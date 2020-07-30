@@ -13,7 +13,7 @@ namespace 项目结构UI.Controllers
     {
         // GET: Account
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult Login()  //这个是我输入的
         {
             AdminViewModel vmInfo = new AdminViewModel() { LoginUID = "Admin", LoginPWD = "123456" };
             return View(vmInfo);

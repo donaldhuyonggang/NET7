@@ -12,10 +12,8 @@ namespace 项目结构UI
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-       
-        //测试
 
-
+        //测试 origin
 
         protected void Application_Start()
         {
