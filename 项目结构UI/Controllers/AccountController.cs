@@ -9,7 +9,7 @@ using 项目结构UI.Models;
 
 namespace 项目结构UI.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : Controller   //dddd
     {
         // GET: Account
         [HttpGet]
