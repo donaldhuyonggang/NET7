@@ -1,0 +1,114 @@
+﻿
+@{ 
+
+    var info = this.Session["MYUSER"] as 项目结构Model.Sys_User;
+    string userName = "未登录";
+    if (info != null)
+    {
+        userName = info.UserName;
+    }
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title - 仓库管理系统</title>
+	<link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+	@RenderSection("styles", required: false)
+</head>
+
+<body class="layui-layout-body">
+	<div class="layui-layout layui-layout-admin">
+		<div class="layui-header">
+			<div class="layui-logo">仓库管理系统</div>
+			<!-- 头部区域（可配合layui已有的水平导航） -->
+			<ul class="layui-nav layui-layout-left">
+				<li class="layui-nav-item"><a href="">控制台</a></li>
+				<li class="layui-nav-item"><a href="">商品管理</a></li>
+				<li class="layui-nav-item"><a href="">用户</a></li>
+				<li class="layui-nav-item">
+					<a href="javascript:;">其它系统</a>
+					<dl class="layui-nav-child">
+						<dd><a href="">邮件管理</a></dd>
+						<dd><a href="">消息管理</a></dd>
+						<dd><a href="">授权管理</a></dd>
+					</dl>
+				</li>
+			</ul>
+			<ul class="layui-nav layui-layout-right">
+				<li class="layui-nav-item">
+					<a href="javascript:;">
+						<img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" class="layui-nav-img">
+						@userName
+					</a>
+					<dl class="layui-nav-child">
+						<dd><a href="">基本资料</a></dd>
+						<dd><a href="">安全设置</a></dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item"><a href="">退出</a></li>
+			</ul>
+		</div>
+
+		<div class="layui-side layui-bg-black">
+			<div class="layui-side-scroll">
+				<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+				<ul class="layui-nav layui-nav-tree" lay-filter="test">
+					<li class="layui-nav-item layui-nav-itemed">
+						<a class="" href="javascript:;">所有商品</a>
+						<dl class="layui-nav-child">
+							<dd><a href="javascript:;">列表一</a></dd>
+							<dd><a href="javascript:;">列表二</a></dd>
+							<dd><a href="javascript:;">列表三</a></dd>
+							<dd><a href="">超链接</a></dd>
+						</dl>
+					</li>
+					<li class="layui-nav-item">
+						<a href="javascript:;">解决方案</a>
+						<dl class="layui-nav-child">
+							<dd><a href="javascript:;">列表一</a></dd>
+							<dd><a href="javascript:;">列表二</a></dd>
+							<dd><a href="">超链接</a></dd>
+						</dl>
+					</li>
+					<li class="layui-nav-item"><a href="">云市场</a></li>
+					<li class="layui-nav-item">
+						<a href="javascript:;">发布商品</a>
+						<dl class="layui-nav-child">
+							<dd><a href="javascript:;">列表333一</a></dd>
+							<dd><a href="javascript:;">列表33二</a></dd>
+							<dd><a href="javascript:;">列表33三</a></dd>
+						</dl>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="layui-body" style="padding:3px;">
+			<!-- 内容主体区域 -->
+			@RenderBody()
+		</div>
+		<div class="layui-footer">
+			<!-- 底部固定区域 -->
+			© layui.com - 底部固定区域
+		</div>
+	</div>
+
+
+
+	<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+	<script src="~/Content/layui/layui.all.js"></script>
+	@RenderSection("scripts", false)
+
+</body>
+
+
+
+
+<!--用于layui的弹出层-->
+<div style="display:none" id="layer_container"></div>
+
+
+</html>

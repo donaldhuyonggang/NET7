@@ -1,0 +1,71 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model int
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Update</title>
+</head>
+<body>
+    <div id="myDiv">
+        <p>商品名称:<input v-model="Goods.GoodsName" /></p>
+        <p>商品数量:<input v-model="Goods.Num" /></p>
+        <p>商品数量:<input v-model="Goods.Price" /></p>
+        <p>商品数量:<input v-model="Goods.TypeId" /></p>
+
+        <button id="btnSave">保存</button>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+
+    <script>
+
+        $(function () {
+            var vm = new Vue({
+                el: "#myDiv",
+                data: {
+                    Goods: {}
+                }
+            });
+
+            $.ajax({
+                type: "get",
+                url: "/api/WebAPITest/@Model",
+                contentType: "application/json",
+                success: function (data) {
+                    vm.Goods = data;
+                }, error: function (xhr) {
+                    alert("错误:" + xhr.responseText)
+                }
+            })
+
+
+
+            $("#btnSave").click(function(){
+                var info = vm.Goods;
+                $.ajax({
+                    type: "put",
+                    url: "/api/WebAPITest",
+                        contentType: "application/json",
+                    data:JSON.stringify(info),
+                    success: function (data) {
+                        alert("保存:" + data)
+                    }, error: function (xhr) {
+                        alert("错误:" + xhr.responseText)
+                    }
+            })
+
+            });//click
+
+        });//load
+
+    </script>
+</body>
+</html>

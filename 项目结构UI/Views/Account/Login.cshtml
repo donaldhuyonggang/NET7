@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+}
+
+@using 项目结构UI.Models
+@model AdminViewModel
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>欢迎登录</title>
+</head>
+<body>
+    <form action="/" method="post">
+        <p>账号: 
+            @Html.TextBoxFor(x=> x.LoginUID) 
+            @Html.ValidationMessageFor(x => x.LoginUID)
+        </p>
+        <p>密码: 
+            @Html.PasswordFor(x => x.LoginPWD)
+            @Html.ValidationMessageFor(x => x.LoginPWD)
+         </p>
+        <button type="submit">登录</button> @Html.ValidationMessage("error")
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<table id="myTable" lay-filter="myTable" lay-data="{id: 'myTable'}"></table>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+
+@section scripts{
+    <script> 
+        $(function(){ 
+            var table = layui.table;    //第一个实例 
+            table.render({
+                elem: '#myTable' 
+                ,url: '/LayUITable/GetData' //数据接口
+                , page: true //开启分页
+                , toolbar: true
+                , toolbar: 'default'
+                ,cols: [[ //表头            
+                     {field: 'GoodsId', title: '商品编号', width:120, sort: true, fixed: 'left'}
+                    ,{field: 'GoodsName', title: '商品名称', width:200}
+                    ,{field: 'Num', title: '数量', width:80, sort: true}
+                    ,{field: 'Price', title: '价格', width:80} 
+                    ,{field: 'TypeName', title: '商品类型', width: 177}
+                    , { fixed: 'right', width: 250, align: 'center', toolbar: '#barDemo' } //这里的toolbar值是模板元素的选择器
+                ]]
+            });
+            table.on("tool(myTable)", function (obj) {
+
+                alert(obj.event);
+            });
+            table.on("toolbar(myTable)", function (obj) {
+                var info = {
+                    id: "1",
+                    name :"xxxx"
+                };
+
+                alert('刷新');
+                table.reload("myTable", {
+                    url: '/LayUITable/GetDataWhere',
+                    where:info 
+                })
+                //刷新
+                    
+            });
+        })
+    </script>
+    
+}

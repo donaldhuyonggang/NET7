@@ -1,0 +1,103 @@
+﻿
+@{
+
+}
+ 
+@using 项目结构Model
+
+@model List<Goods>
+
+ <a id="btnAdd" href="#" class="layui-btn">新增</a>
+ <table class="layui-table"> 
+ 
+    <thead> 
+        <tr> 
+            <th>商品编号</th> 
+            <th>商品名称</th> 
+            <th>数量</th> 
+            <th>价格</th> 
+            <th>商品类型</th> 
+            <th>操作</th> 
+        </tr> 
+    </thead> 
+    <tbody> 
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.GoodsId</td>
+                <td>@item.GoodsName</td>
+                <td>@item.Num</td>
+                <td>@item.Price</td>
+                <td>@item.Goods_Type.TypeName</td>
+                <td><a href="javascript:Edit(@item.GoodsId)" class="layui-btn">修改</a></td>
+            </tr>
+        } 
+    </tbody> 
+</table>
+
+
+@section scripts{
+    
+    
+    <script>
+
+        //把一个方法做为参数，传递给另外一个方法(把方法当参数使用--》委托)
+        $(function () { });//这个写法到底是什么
+
+        //委托：把方法当参数使用,函数指针，方法指针(地址，引用)
+        //匿名方法的好处：简化代码
+        //委托的好处： 委托可以让你调用未来的方法
+        //事件： 事件是一种特殊的委托
+
+        //多态:多种形态， 多种行为和结果
+
+
+        $(document).ready(function () { });
+
+        
+      
+
+
+        $(function () {
+
+
+            $("#btnAdd").click(function () { 
+
+				$("#layer_container").empty();
+				$("#layer_container").load("/Home/Add", function () {
+
+
+
+					layer.open({
+						type: 1,
+						content: $("#layer_container"),
+						title: "商品新增",
+						area: ['500px', '300px'],
+						 
+                    });
+
+                });
+
+
+
+
+            });
+
+        });//窗体加载
+
+        function Edit(id) {
+			$("#layer_container").empty();
+			$("#layer_container").load("/Home/Update/" + id, function () {
+                layer.open({
+                    type: 1,
+					content: $("#layer_container"),
+                    title: "商品新增",
+                    area: ['500px', '300px'],
+                    skin: "layui-layer-lan "
+                });
+			});
+        }
+
+    </script>    
+    
+}

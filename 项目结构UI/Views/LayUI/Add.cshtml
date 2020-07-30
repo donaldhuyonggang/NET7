@@ -1,0 +1,83 @@
+﻿
+
+@Html.Partial("LAYUICSS")
+
+	<form class="layui-form" action="">
+		<div class="layui-form-item">
+			<label class="layui-form-label">商品名称</label>
+			<div class="layui-input-block">
+				<input name="GoodsName" class="layui-input" type="text" placeholder="请输入标题" autocomplete="off" lay-verify="title">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">库存</label>
+			<div class="layui-input-block">
+				<input name="Num" class="layui-input" type="text" placeholder="请输入" autocomplete="off" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">单价</label>
+			<div class="layui-input-block">
+				<input name="Price" class="layui-input" type="text" placeholder="请输入" autocomplete="off" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">商品类型</label>
+			<div class="layui-input-block">
+				<select></select>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label"></label>
+			<div class="layui-input-block">
+				<button id="btnSave" type="button" class="layui-btn layui-btn-danger">保存</button>
+			</div>
+		</div>
+	</form> 
+@Html.Partial("LAYUIJS")
+
+<script>
+
+	$(function () {
+
+		//var layer = layui.layer; 
+		//layer.msg("我是分部视图");
+
+
+		$(".layui-form").on("click","#btnSave",function () {
+			var info = {
+				GoodsName: $("[name='GoodsName']").val(),
+				Num: $("[name='Num']").val(),
+				Price: $("[name='Price']").val(),
+				TypeId: 2
+			};
+			var layer = layui.layer;
+			$.ajax({
+				type: "post",
+                url: "/api/WebAPITest",
+				data: JSON.stringify(info),
+                contentType: "application/json",
+				success: function (data) {
+					layer.msg(data);
+
+					//当你在iframe页面关闭自身时
+					var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+					parent.layer.close(index); //再执行关闭   
+
+				},
+				error: function (xhr) {
+					alert("错误:" + xhr.responseText);
+				}
+			});//ajax
+
+			
+			
+		});
+
+
+
+	});//load
+
+
+
+</script>

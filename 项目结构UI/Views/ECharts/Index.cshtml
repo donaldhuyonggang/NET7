@@ -1,0 +1,45 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div id="mydiv" style="width:600px;height:300px; border:1px solid red;"></div>
+
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/ECharts/echarts-all.js"></script>
+    <script>
+
+        $(function () { 
+
+            var myChart = echarts.init(document.getElementById('mydiv'));
+
+            myChart.setOption({
+                title: {
+                    text: 'ECharts 入门示例xxx',
+                    x:"center"
+                },
+                xAxis: {
+                    data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+                },
+                yAxis: {},
+                series: [{
+                    name: '销量',
+                    type: 'line',
+                    data: [5, 20, 36, 10, 10, 20]
+                }]
+            });
+
+        });//load
+
+    </script>
+
+</body>
+</html>

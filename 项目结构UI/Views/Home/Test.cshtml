@@ -1,0 +1,67 @@
+﻿
+@{
+    Layout = null;
+}
+
+@using 项目结构Model
+@model List<Goods>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>layui案例</title>
+
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+    <div> 
+        <button  id="btn" class="layui-btn layui-btn-warm">案例</button>
+    </div>
+
+    <table class="layui-table" lay-even>  
+        <thead> 
+            <tr> 
+                <th>商品编号</th> 
+                <th>商品名称</th> 
+                <th>商品类型</th> 
+            </tr> 
+        </thead> 
+        <tbody> 
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.GoodsId</td>
+                    <td>@item.GoodsName</td>
+                    <td>@item.Goods_Type.TypeName</td>
+                </tr>
+            } 
+        </tbody> 
+    </table> 
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Content/layui/layui.all.js"></script>
+
+    <script>
+
+        $(function () {
+
+            $("#btn").click(function () {
+                var layer = layui.layer;
+                 
+                layer.open({
+                    type: 1,
+                    content: "您好",
+                    area: ['500px', '300px']
+                });
+
+               // window.alert(333);
+
+            });//3.click
+
+        });//2. load
+
+    </script>
+</body>
+</html>

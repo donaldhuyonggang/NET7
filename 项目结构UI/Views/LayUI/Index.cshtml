@@ -1,0 +1,86 @@
+﻿
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Test1</title>
+	<link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+	<div>
+		<button id="btnAdd" class="layui-btn layui-btn-warm">新增</button>
+		<button id="btnDel" class="layui-btn layui-btn-danger">删除</button>
+	</div>
+	<table id="mytable"></table>
+
+	<script src="~/Scripts/jquery-1.10.2.js"></script>
+	<script src="~/Content/layui/layui.all.js"></script>
+	 
+	<script>
+
+		$(function () { 
+			var table = layui.table;
+
+			//输出一个表格
+			table.render({
+				elem: '#mytable',
+				id: "mytable",
+				height: 312,
+                url: "/api/WebAPITest",
+				page: true,
+				limit: 3, 
+				limits: [3, 5, 10],
+				cols: [[
+					{ type:'radio' },
+					{ field: 'GoodsId', title: '商品编号', width: 100 },
+					{ field: 'GoodsName', title: '商品名称', width: 200 },
+					{ field: 'TypeName', title: '商品类型', width: 300 }
+				]]
+			});//render
+
+
+			$("#btnAdd").click(function () {
+				var layer = layui.layer;
+
+				layer.open({
+					type: 2,
+					content: ["/LayUI/Add", "no"],
+					area: ['600px', '400px'],
+					end: function () {
+						table.reload("mytable");
+					}
+				}); 
+
+			});//3.click
+
+			$("#btnDel").click(function () {
+				var checkStatus = table.checkStatus('mytable'); //mytable 即为基础参数 id 对应的值
+				var info = {
+                    id: checkStatus.data[0].GoodsId
+                }
+				$.ajax({
+					type: "delete",
+					url: "/api/WebAPITest",
+					data: JSON.stringify("5"),
+                    contentType: "application/json",
+                    success: function (data) {
+                        layer.msg(data); 
+                    },
+                    error: function (xhr) {
+                        alert("错误:" + xhr.responseText);
+                    }
+                });//ajax
+
+			});//3.click
+
+		})//load
+
+	</script>
+
+</body>
+</html>

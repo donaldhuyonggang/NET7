@@ -1,0 +1,28 @@
+﻿@using 项目结构Model
+
+@model Goods
+
+<style>
+
+    .red{
+        color:yellow;
+    }
+
+</style>
+
+<form>
+    <p>商品编号:@Html.TextBoxFor(x=>x.GoodsId,new { @class="red" })</p>
+
+    <p>商品类型：@Html.DropDownListFor(x=>x.TypeId,(SelectList)ViewBag.GoodsTypes)</p>
+    
+
+</form>
+
+
+<a id="btnAdd" href="#" class="layui-btn">新增</a>
+
+<a id="btnAdd" href="#" class="layui-btn">新增</a>
+
+<a id="btnAdd" href="#" class="layui-btn">新增</a>
+
+<a id="btnAdd" href="#" class="layui-btn">新增</a>

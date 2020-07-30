@@ -1,0 +1,87 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div id="myDiv">{{text}}</div>
+
+    <ul id="myUL">
+        <li v-for="item in array">
+            {{item}}
+        </li>
+    </ul>
+
+
+    <table border="1" id="myTable" >
+        <thead>
+            <tr>
+                <th>商品编号</th>
+                <th>商品名称</th>
+                <th>商品类型</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="item in Goods">
+                <td>{{item.GoodsId}}</td>
+                <td>{{item.GoodsName}}</td>
+                <td>{{item.TypeName}}</td>
+                <td><a v-bind:href="'/VueTest/Update/'+item.GoodsId">修改</a></td>
+            </tr>
+        </tbody>
+     </table>
+
+        <script src="~/Scripts/jquery-1.10.2.js"></script>
+        <script src="~/Scripts/vue.js"></script>
+        <script>
+
+
+            $(function () {
+
+                // $("#myDiv").text("我是动态的值");
+
+                var vw = new Vue({
+                    el: "#myDiv",
+                    data: {
+                        text: "我是vue的值"
+                    }
+                });
+
+                var vm1 = new Vue({
+                    el: "#myUL",
+                    data: {
+                        array: ["A", "B", "C"]
+                    }
+                })
+
+                $.ajax({
+                    type: "get",
+                    url: "/api/WebAPITest",
+                    contentType:"application/json",
+                    success: function (data) {
+                        var vm2 = new Vue({
+                            el: "#myTable",
+                            data: {
+                                Goods: data
+                            }
+                        });
+                    }, error: function (xhr) {
+                        alert("错误:"+xhr.responseText)
+                    }
+                })
+
+                
+            });//
+
+
+        </script>
+</body>
+</html>

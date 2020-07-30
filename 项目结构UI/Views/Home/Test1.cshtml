@@ -1,0 +1,50 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Test1</title>
+    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+   
+    <table id="mytable"></table>
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Content/layui/layui.all.js"></script>
+
+    <script>
+
+        $(function () {
+
+            var table = layui.table;
+
+            //输出一个表格
+            table.render({
+                elem: '#mytable',
+                id:"mytable",
+                height: 312,
+                url: "/Home/GetGoods",
+                page: true,
+                limit: 3,
+                toolbar:true,
+                limits:[3,5,10],
+                cols: [[
+                    { field: 'GoodsId', title: '商品编号',width:100 },
+                    { field: 'GoodsName', title: '商品名称', width: 200 },
+                    { field: 'TypeName', title: '商品类型', width: 300 }
+                ]]
+            });//render
+
+
+        })//load
+
+    </script>
+
+</body>
+</html>
