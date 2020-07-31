@@ -9,5 +9,9 @@ namespace 项目结构UI.Areas.Admin.Controllers
 {
     public class DefaultController : ApiController
     {
+        public string Get()
+        {
+            return "a";
+        }
     }
 }
